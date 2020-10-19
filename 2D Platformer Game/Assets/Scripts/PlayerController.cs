@@ -122,4 +122,9 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("hurt");
     }
 
+
+    public void SetPlayerPosition(Vector3 newPosition)
+    {
+        transform.position = newPosition;
+    }
 }

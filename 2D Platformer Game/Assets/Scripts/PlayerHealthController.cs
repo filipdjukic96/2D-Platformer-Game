@@ -75,9 +75,13 @@ public class PlayerHealthController : MonoBehaviour
         {
             currentHealth = 0; //can't go below 0
 
+            /*COMMENTED - SHOULD BE HANDLED BY THE LevelManager*/
             //gameObject represents the game object this script is attached to (Player)
             //remove the player from the world
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+
+            //respawn the Player
+            LevelManager.instance.RespawnPlayer();
         }
         else
         {
@@ -93,5 +97,17 @@ public class PlayerHealthController : MonoBehaviour
         }
 
         UIController.instance.UpdateHealthDisplay(); //update hearts UI
+    }
+
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+        UIController.instance.UpdateHealthDisplay();//update the hearts in UI
+    }
+
+    public void KillPlayer()
+    {
+        currentHealth = 0;
+        UIController.instance.UpdateHealthDisplay();
     }
 }

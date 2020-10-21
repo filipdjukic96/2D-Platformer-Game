@@ -12,6 +12,11 @@ public class LevelManager : MonoBehaviour
 
     public float waitToRespawn; //how long to wait until the Player is respawned (in seconds)
 
+    public int gemScoreCollected; //denotes the score of the Player
+    public int fireScoreCollected; //denotes the number of fires collected by the Player
+
+
+
 
     private void Awake()
     {
@@ -28,6 +33,20 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AddGemScore(int score)
+    {
+        gemScoreCollected += score;
+        //update UI
+        UIController.instance.UpdateGemScoreDisplay();
+    }
+
+    public void AddFireScore()
+    {
+        fireScoreCollected++;
+        //update UI
+        UIController.instance.UpdateFireScoreDisplay();
     }
 
 
@@ -60,4 +79,5 @@ public class LevelManager : MonoBehaviour
         PlayerHealthController.instance.ResetHealth();
           
     }
+
 }

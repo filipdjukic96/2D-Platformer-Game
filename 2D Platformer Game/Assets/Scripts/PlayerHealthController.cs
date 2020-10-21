@@ -14,11 +14,19 @@ public class PlayerHealthController : MonoBehaviour
     public int currentHealth;
     public int maxHealth;
 
+    //reference to Player death effect
+    public GameObject deathEffect;
+
     //denotes how long the player will be invincible (in seconds)
     public float invincibilityDuration;
 
+
+
+
+    //PRIVATE//
+
     //Player's Sprite Renderer
-    public SpriteRenderer playerSpriteRenderer;
+    private SpriteRenderer playerSpriteRenderer;
 
 
 
@@ -80,6 +88,10 @@ public class PlayerHealthController : MonoBehaviour
             //remove the player from the world
             //gameObject.SetActive(false);
 
+            //show Player death effect (ONLY FROM HERE - IF THE PLAYER IS KILLED WHEN SOMETHING DAMAGES HIM!)
+            //effect must be called before respawning the player
+            Instantiate(deathEffect, transform.position, transform.rotation);
+
             //respawn the Player
             LevelManager.instance.RespawnPlayer();
         }
@@ -109,5 +121,17 @@ public class PlayerHealthController : MonoBehaviour
     {
         currentHealth = 0;
         UIController.instance.UpdateHealthDisplay();
+    }
+
+    public void HealPlayer()
+    {
+        //check just to make sure
+        if(currentHealth == maxHealth)
+        {
+            return;
+        }
+
+        currentHealth++;
+        UIController.instance.UpdateHealthDisplay(); //update hearts UI
     }
 }

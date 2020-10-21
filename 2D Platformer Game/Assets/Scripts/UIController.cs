@@ -19,6 +19,12 @@ public class UIController : MonoBehaviour
     //half heart sprite
     public Sprite heartHalf;
 
+
+    //gem score
+    public Text gemScoreText;
+    //fire score
+    public Text fireScoreText;
+
     private void Awake()
     {
         instance = this;
@@ -28,7 +34,9 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //set UI for gems and fires (0)
+        UpdateGemScoreDisplay();
+        UpdateFireScoreDisplay();
     }
 
     // Update is called once per frame
@@ -83,5 +91,16 @@ public class UIController : MonoBehaviour
                 heart3.sprite = heartEmpty;
                 break;
         }
+    }
+
+
+    public void UpdateGemScoreDisplay()
+    {
+        gemScoreText.text = LevelManager.instance.gemScoreCollected.ToString();
+    }
+
+    public void UpdateFireScoreDisplay()
+    {
+        fireScoreText.text = LevelManager.instance.fireScoreCollected.ToString();
     }
 }

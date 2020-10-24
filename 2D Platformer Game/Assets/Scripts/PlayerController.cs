@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     public float knockBackForce;
 
 
+    //bouncing off the enemy
+    public float bounceForce; //how much the player will bounce
+
     //PRIVATE//
     private bool isGrounded;//denotes if the player is touching the ground
     private bool canDoubleJump; //denotes if the player is allowed a second jump
@@ -126,5 +129,10 @@ public class PlayerController : MonoBehaviour
     public void SetPlayerPosition(Vector3 newPosition)
     {
         transform.position = newPosition;
+    }
+
+    public void Bounce()
+    {
+        rigidBody.velocity = new Vector2(rigidBody.velocity.x, bounceForce);
     }
 }

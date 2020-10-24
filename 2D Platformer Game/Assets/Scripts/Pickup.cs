@@ -14,7 +14,7 @@ public class Pickup : MonoBehaviour
     public bool isHealthPickup;
 
     //denotes how much the gem is worth (score)
-    public int gemScore;
+    public int gemScoreWorth;
 
 
     //reference to pickup effect game object
@@ -46,7 +46,7 @@ public class Pickup : MonoBehaviour
             //is it a gem pickup
             if(isGemPickup)
             {
-                LevelManager.instance.AddGemScore(gemScore);
+                LevelManager.instance.AddGemScore(gemScoreWorth);
             }
             else if (isFirePickup)
             {

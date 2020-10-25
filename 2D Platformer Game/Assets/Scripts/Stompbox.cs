@@ -7,15 +7,6 @@ using UnityEngine;
 public class Stompbox : MonoBehaviour
 {
 
-    //effect of enemy dying
-    public GameObject deathEffect;
-
-    //collectible which will be dropped (cherry or fire)
-    public GameObject collectibleCherry;
-    public GameObject collectibleFire;
-    //threshold (chance) of dropping the collectible
-    [Range(0,100)] public float chanceToDropCollectible;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,21 +19,7 @@ public class Stompbox : MonoBehaviour
         
     }
 
-    private GameObject ChooseDropCollectible()
-    {
-        //generate a random number between 0 and 100
-        //if it's <= 50, top a cherry, otherwise drop a fire
-        float dropNumber = Random.Range(0, 100f);
 
-        if(dropNumber <= 50)
-        {
-            return collectibleCherry;
-        }
-        else
-        {
-            return collectibleFire;
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -50,26 +27,28 @@ public class Stompbox : MonoBehaviour
         {
             Debug.Log("Hit enemy");
 
-            //deactivate the enemy
-            //!!!!! cannot deactivate the other.gameObject only because it would only deactivate the enemy sprite but not the whole object itself !!!!!
-            //this is why we need to deactivate the parent object
-            other.transform.parent.gameObject.SetActive(false);
+            //DAMAGE ENEMY
 
-            //set enemy death effect
-            //Instantiate creates a copy (gameObject passed as first arg, position and rotation as 2nd and 3rd)
-            Instantiate(deathEffect, other.transform.position,other.transform.rotation);
+            //CASE I: the Box Collider 2D collided with the Box Collider of the enemy sprite
+            //CASE II: the Box Collider 2D collided with the Box Collider of the enemy object
+
+            //if other's parent is != null, that means we collided with the enemy sprite
+            if (other.transform.parent != null)
+            {
+                //CASE I
+                //!!!!! cannot damage the other.gameObject only because it would only damage the enemy sprite but not the whole object itself !!!!!
+                //this is why we need to damage the parent object
+                other.transform.parent.gameObject.GetComponent<EnemyController>().DamageEnemy();
+            }
+            else //collided with the enemy object
+            {
+                //CASE II
+                //the enemy object was hit, damage it
+                other.gameObject.GetComponent<EnemyController>().DamageEnemy();
+            }
 
             //make the Player bounce off the enemy
             PlayerController.instance.Bounce();
-
-            //drop the collectible if the threshod has been achieved
-            float dropChance = Random.Range(0, 100f);
-
-            if(dropChance <= chanceToDropCollectible)
-            {
-                //drop collectible
-                Instantiate(ChooseDropCollectible(), other.transform.position, other.transform.rotation);
-            }
         }
     }
 }

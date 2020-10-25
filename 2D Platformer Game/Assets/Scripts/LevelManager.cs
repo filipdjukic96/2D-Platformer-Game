@@ -49,6 +49,13 @@ public class LevelManager : MonoBehaviour
         UIController.instance.UpdateFireScoreDisplay();
     }
 
+    public void RemoveFireScore()
+    {
+        fireScoreCollected--;
+        //update UI
+        UIController.instance.UpdateFireScoreDisplay();
+    }
+
 
     public void RespawnPlayer()
     {

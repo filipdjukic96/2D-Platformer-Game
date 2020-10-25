@@ -28,10 +28,6 @@ public class PlayerHealthController : MonoBehaviour
     //Player's Sprite Renderer
     private SpriteRenderer playerSpriteRenderer;
 
-
-
-    //PRIVATE//
-
     //used to count down how much invicibility time has remained 
     private float invincibilityCounter;
 
@@ -57,6 +53,7 @@ public class PlayerHealthController : MonoBehaviour
 
             if(invincibilityCounter <= 0)
             {
+                //DISABLE INVINCIBILITY
                 //player is no longer invincible - no longer see-through
                 playerSpriteRenderer.color = new Color(playerSpriteRenderer.color.r,
                                                        playerSpriteRenderer.color.g,
@@ -83,11 +80,6 @@ public class PlayerHealthController : MonoBehaviour
         {
             currentHealth = 0; //can't go below 0
 
-            /*COMMENTED - SHOULD BE HANDLED BY THE LevelManager*/
-            //gameObject represents the game object this script is attached to (Player)
-            //remove the player from the world
-            //gameObject.SetActive(false);
-
             //show Player death effect (ONLY FROM HERE - IF THE PLAYER IS KILLED WHEN SOMETHING DAMAGES HIM!)
             //effect must be called before respawning the player
             Instantiate(deathEffect, transform.position, transform.rotation);
@@ -97,6 +89,7 @@ public class PlayerHealthController : MonoBehaviour
         }
         else
         {
+            //SET INVINCIBILITY
             invincibilityCounter = invincibilityDuration;
             //set player see-through
             playerSpriteRenderer.color = new Color(playerSpriteRenderer.color.r,

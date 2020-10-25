@@ -12,11 +12,18 @@ public class EnemyController : MonoBehaviour
 
     public SpriteRenderer enemySpriteRenderer; //SpriteRenderer of the enemy
     
-
-
     public float moveTime, waitTime; //time for movement and time to wait between movements
 
-
+    //health
+    public int currentHealth;
+    public int maxHealth;
+    //death effect of the enemy
+    public GameObject deathEffect;
+    //collectible which will be dropped (cherry or fire)
+    public GameObject collectibleCherry;
+    public GameObject collectibleFire;
+    //threshold (chance) of dropping the collectible
+    [Range(0, 100)] public float chanceToDropCollectible;
 
     // PRIVATE //
 
@@ -44,6 +51,8 @@ public class EnemyController : MonoBehaviour
         isMovingRight = true;
 
         moveTimeCounter = moveTime;
+
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -53,11 +62,13 @@ public class EnemyController : MonoBehaviour
         if(moveTimeCounter <= 0)
         {
             //moveTimeCounter is <=0, which means that waitTimeCounter must be > 0
-
+            //THE ENEMY IS WAITING
             waitTimeCounter -= Time.deltaTime;
 
             if(waitTimeCounter <= 0)
             {
+                //THE ENEMY HAS STOPPED WAITING, SWITCH TO MOVING MODE
+
                 //randomize moveTime
                 moveTimeCounter = Random.Range(moveTime * 0.75f, moveTime * 1.25f);
             }
@@ -72,6 +83,7 @@ public class EnemyController : MonoBehaviour
 
         if(isMovingRight)
         {
+            //MOVING RIGHT
             rigidBody.velocity = new Vector2(moveSpeed, rigidBody.velocity.y);
 
             enemySpriteRenderer.flipX = true; //flip the sprite to face the correct way
@@ -83,6 +95,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            //MOVING LEFT
             rigidBody.velocity = new Vector2(-moveSpeed, rigidBody.velocity.y);
 
             enemySpriteRenderer.flipX = false; 
@@ -98,6 +111,8 @@ public class EnemyController : MonoBehaviour
 
         if(moveTimeCounter <= 0)
         {
+            //THE ENEMY HAS STOPPED MOVING, SWITCH TO WAITING MODE
+
             //randomize the waitTime
             waitTimeCounter = Random.Range(waitTime * 0.75f, waitTime * 1.25f);
 
@@ -109,5 +124,45 @@ public class EnemyController : MonoBehaviour
         }
 
 
+    }
+
+    private GameObject ChooseDropCollectible()
+    {
+        //generate a random number between 0 and 100
+        //if it's <= 50, top a cherry, otherwise drop a fire
+        float dropNumber = Random.Range(0, 100f);
+
+        if (dropNumber <= 50)
+        {
+            return collectibleCherry;
+        }
+        else
+        {
+            return collectibleFire;
+        }
+    }
+
+    public void DamageEnemy()
+    {
+        currentHealth--;
+
+        if(currentHealth == 0)
+        {
+            //destroy enemy
+            //set object as false
+            gameObject.SetActive(false);
+            //instantiate a death effect
+            //Instantiate creates a copy (gameObject passed as first arg, position and rotation as 2nd and 3rd)
+            Instantiate(deathEffect, transform.position, transform.rotation);
+
+            //drop the collectible if the threshod has been achieved
+            float dropChance = Random.Range(0, 100f);
+
+            if (dropChance <= chanceToDropCollectible)
+            {
+                //drop collectible
+                Instantiate(ChooseDropCollectible(), transform.position, transform.rotation);
+            }
+        }
     }
 }

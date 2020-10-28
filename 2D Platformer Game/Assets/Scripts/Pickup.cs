@@ -47,11 +47,16 @@ public class Pickup : MonoBehaviour
             if(isGemPickup)
             {
                 LevelManager.instance.AddGemScore(gemScoreWorth);
+                //play sound effect
+                AudioManager.instance.PlaySFX(AudioManager.SoundEffects.PickupGem);
             }
             else if (isFirePickup)
             {
                 LevelManager.instance.AddFireScore();
-                
+                //play sound effect
+                //same as gem pickup
+                AudioManager.instance.PlaySFX(AudioManager.SoundEffects.PickupGem);
+
             }
             else if (isHealthPickup)
             {
@@ -63,6 +68,8 @@ public class Pickup : MonoBehaviour
 
                 //add 1/2 hearth
                 PlayerHealthController.instance.HealPlayer();
+                //play sound effect
+                AudioManager.instance.PlaySFX(AudioManager.SoundEffects.PickupHealth);
             }
             else
             {

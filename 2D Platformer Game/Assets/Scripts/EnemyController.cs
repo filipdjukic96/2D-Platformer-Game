@@ -155,6 +155,9 @@ public class EnemyController : MonoBehaviour
             //Instantiate creates a copy (gameObject passed as first arg, position and rotation as 2nd and 3rd)
             Instantiate(deathEffect, transform.position, transform.rotation);
 
+            //play enemy destroyed sound effect
+            AudioManager.instance.PlaySFX(AudioManager.SoundEffects.EnemyExplode);
+
             //drop the collectible if the threshod has been achieved
             float dropChance = Random.Range(0, 100f);
 

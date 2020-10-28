@@ -89,6 +89,10 @@ public class PlayerHealthController : MonoBehaviour
         }
         else
         {
+            //health is > 0
+            //play Player hurt sound effect
+            AudioManager.instance.PlaySFX(AudioManager.SoundEffects.PlayerHurt);
+
             //SET INVINCIBILITY
             invincibilityCounter = invincibilityDuration;
             //set player see-through

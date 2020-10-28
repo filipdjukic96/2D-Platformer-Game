@@ -135,6 +135,8 @@ public class PlayerController : MonoBehaviour
     public void Bounce()
     {
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, bounceForce);
+        //play Player jump sound effect (used also for bouncing)
+        AudioManager.instance.PlaySFX(AudioManager.SoundEffects.PlayerJump);
     }
 
     private void Jump()
@@ -143,6 +145,8 @@ public class PlayerController : MonoBehaviour
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
             canDoubleJump = true;
+            //play Player jump sound effect
+            AudioManager.instance.PlaySFX(AudioManager.SoundEffects.PlayerJump);
         }
         else
         {
@@ -150,6 +154,8 @@ public class PlayerController : MonoBehaviour
             {
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
                 canDoubleJump = false;
+                //play Player jump sound effect
+                AudioManager.instance.PlaySFX(AudioManager.SoundEffects.PlayerJump);
             }
         }
     }
@@ -209,6 +215,9 @@ public class PlayerController : MonoBehaviour
 
             //decrease the fire pickups collected 
             LevelManager.instance.RemoveFireScore();
+
+            //play shoot sound effect
+            AudioManager.instance.PlaySFX(AudioManager.SoundEffects.Shot);
         }
     }
 }

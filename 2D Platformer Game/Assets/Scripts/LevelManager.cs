@@ -72,6 +72,9 @@ public class LevelManager : MonoBehaviour
         //gameObject represents the game object the PlayerController script is attached to (Player)
         PlayerController.instance.gameObject.SetActive(false);
 
+        //play Player death sound effect
+        AudioManager.instance.PlaySFX(AudioManager.SoundEffects.PlayerDeath);
+
         //wait for a certain amount of time
         //WaitForSeconds suspends the coroutine execution for the given amount of time
         yield return new WaitForSeconds(waitToRespawn);

@@ -67,7 +67,8 @@ public class PlayerBullet : MonoBehaviour
             Debug.Log("Other hit");
             //bullet hit something else, instantiate a death effect (bullet explode)
             //bullet's position and rotation are used instead of the hit object's
-            Instantiate(deathEffect, transform.position, transform.rotation);
+            //TODO: ADD A SEPARATE BULLET-HIT EFFECT
+            //Instantiate(deathEffect, transform.position, transform.rotation);
 
             //at the end, destroy the bullet
             Destroy(gameObject);

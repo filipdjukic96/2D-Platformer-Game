@@ -63,51 +63,57 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if the game is paused, don't allow input for anything
+        if(!PauseMenu.instance.isPaused)
+        { 
 
-        //if knockback is active, no input is allowed
-        if(knockBackCounter <= 0)
-        {
-            //MOVING THE PLAYER
-            rigidBody.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), rigidBody.velocity.y);
-
-            //does an overlap and checks if any other object collides with the circle
-            //creates a circle at groundCheckPoint.position of diameter .2f and checks if it collides with any object
-            //on Ground layer (whatIsGround)
-            isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
-
-            if (Input.GetButtonDown("Jump"))
-            {
-                Jump();
-            }
-
-            //change direction of the player depending on if he moves forward/backwards
-            //ONLY if X component of velocity is !=0 (so the player stays facing the desired direction when stopped)
-            if (rigidBody.velocity.x != 0)
-            {
-                SetPlayerDirection();
-            }
-
-
-            //if the Player wants to shoot
-            //if the left mouse button is clicked
-            if (Input.GetMouseButtonDown(0))
-            {
-                ShootBullet();
-            }
-
-        }
-        else
-        {
-            knockBackCounter -= Time.deltaTime;
-
-            KnockBackPlayer();
-
+            //if knockback is active, no input is allowed
             if(knockBackCounter <= 0)
             {
-                //ENABLE THE PLAYER'S STOMPBOX COLLIDER
-                //THE PLAYER IS NO LONGER IN KNOCKBACK
-                stompBoxCollider.enabled = true;
+                //MOVING THE PLAYER
+                rigidBody.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), rigidBody.velocity.y);
+
+                //does an overlap and checks if any other object collides with the circle
+                //creates a circle at groundCheckPoint.position of diameter .2f and checks if it collides with any object
+                //on Ground layer (whatIsGround)
+                isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
+
+                if (Input.GetButtonDown("Jump"))
+                {
+                    Jump();
+                }
+
+                //change direction of the player depending on if he moves forward/backwards
+                //ONLY if X component of velocity is !=0 (so the player stays facing the desired direction when stopped)
+                if (rigidBody.velocity.x != 0)
+                {
+                    SetPlayerDirection();
+                }
+
+
+                //if the Player wants to shoot
+                //if the left mouse button is clicked
+                //and if the game ins't paused
+                if (Input.GetMouseButtonDown(0))
+                {
+                    ShootBullet();
+                }
+
             }
+            else
+            {
+                knockBackCounter -= Time.deltaTime;
+
+                KnockBackPlayer();
+
+                if(knockBackCounter <= 0)
+                {
+                    //ENABLE THE PLAYER'S STOMPBOX COLLIDER
+                    //THE PLAYER IS NO LONGER IN KNOCKBACK
+                    stompBoxCollider.enabled = true;
+                }
+            }
+
         }
 
         SetAnimatorParameters();

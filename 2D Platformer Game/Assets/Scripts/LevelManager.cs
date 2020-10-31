@@ -75,9 +75,21 @@ public class LevelManager : MonoBehaviour
         //play Player death sound effect
         AudioManager.instance.PlaySFX(AudioManager.SoundEffects.PlayerDeath);
 
+        //activate the fading black screen
+
         //wait for a certain amount of time
         //WaitForSeconds suspends the coroutine execution for the given amount of time
-        yield return new WaitForSeconds(waitToRespawn);
+        //take away the fade screen time
+        yield return new WaitForSeconds(waitToRespawn - (1f / UIController.instance.fadeScreenSpeed));
+
+        //fade the screen to black
+        UIController.instance.FadeToBlack();
+
+        //wait for the screen to fade
+        yield return new WaitForSeconds((1f / UIController.instance.fadeScreenSpeed) + .2f);
+
+        //fade the screen to normal
+        UIController.instance.FadeFromBlack();
 
         //reactivate the Player
         PlayerController.instance.gameObject.SetActive(true);

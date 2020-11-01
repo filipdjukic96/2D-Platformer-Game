@@ -6,6 +6,8 @@ public class CameraController : MonoBehaviour
 {
     //PUBLIC//
 
+    public static CameraController instance;
+
     //Transform component of the object the camera will follow
     public Transform target;
 
@@ -17,9 +19,17 @@ public class CameraController : MonoBehaviour
     //min and max height for the Main Camera
     public float minHeight, maxHeight;
 
+    //denotes whether the Camera should stop following the Player (upon level end)
+    public bool stopFollowingThePlayer;
+
     //PRIVATE//
     private float lastXPosition; //last x position of the Main Camera's Transform component
     private float lastYPosition; //last y position of the Main Camera's Transform component
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +41,12 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if the camera should stop following, do nothing
+        if(stopFollowingThePlayer)
+        {
+            return;
+        }
+
         //transform is the Transform component of the object this script is attached to (Main Camera)
         //following the target on X axis and on Y axis (between minHeight and maxHeight)
         //Mathf.Clamp assures the first parameter value is between min and max

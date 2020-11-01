@@ -24,6 +24,13 @@ public class PlayerBullet : MonoBehaviour
         //if the scale is -1 - the bullet is facing to the left and its X component of velocity should decrease by bulledSpeed
 
         transform.position += new Vector3(transform.localScale.x * bulletSpeed * Time.deltaTime, 0f, 0f);
+
+        //check if the bullet has passed the left or right edge of the screen
+        //if so, destroy the bullet
+        if(transform.position.x < KillPlayer.instance.leftEndPoint.position.x || transform.position.x > KillPlayer.instance.rightEndPoint.position.x)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -28,6 +28,10 @@ public class UIController : MonoBehaviour
     public Text gemScoreText;
     //fire score
     public Text fireScoreText;
+    
+    
+    //level complete text
+    public GameObject levelCompleteText;
 
 
     // PRIVATE //

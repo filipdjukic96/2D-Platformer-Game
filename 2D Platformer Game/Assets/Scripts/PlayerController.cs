@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
     //bouncing off the enemy
     public float bounceForce; //how much the player will bounce
 
+    [Header("Level End")]
+    public bool stopInput; //inuput disabled when the level ends
+
 
     //PRIVATE//
     private bool isGrounded;//denotes if the player is touching the ground
@@ -64,7 +67,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //if the game is paused, don't allow input for anything
-        if(!PauseMenu.instance.isPaused)
+        if(!PauseMenu.instance.isPaused && !stopInput)
         { 
 
             //if knockback is active, no input is allowed

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //Script with various level functions
 public class LevelManager : MonoBehaviour
@@ -15,7 +16,8 @@ public class LevelManager : MonoBehaviour
     public int gemScoreCollected; //denotes the score of the Player
     public int fireScoreCollected; //denotes the number of fires collected by the Player
 
-
+    //next level to load
+    public string nextLevelToLoad;
 
 
     private void Awake()
@@ -100,6 +102,36 @@ public class LevelManager : MonoBehaviour
         //reset the Player's health
         PlayerHealthController.instance.ResetHealth();
           
+    }
+
+
+    public void EndLevel()
+    {
+        //start the level end coroutine - happens over time
+        StartCoroutine(EndLevelCoroutine());
+    }
+
+    private IEnumerator EndLevelCoroutine()
+    {
+        //disable the input
+        PlayerController.instance.stopInput = true;
+        //stop the Camera follow
+        CameraController.instance.stopFollowingThePlayer = true;
+
+        //display the level complete text
+        UIController.instance.levelCompleteText.SetActive(true);
+
+        //wait 1.5sec
+        yield return new WaitForSeconds(1.5f);
+
+        //fade to black
+        UIController.instance.FadeToBlack();
+
+        //wait a little more
+        yield return new WaitForSeconds((1 / UIController.instance.fadeScreenSpeed) + .25f);
+
+        //load the next level
+        SceneManager.LoadScene(nextLevelToLoad);
     }
 
 }

@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class KillPlayer : MonoBehaviour
 {
+    // PUBLIC //
+    public static KillPlayer instance;
+
+    //left and right edge of the level
+    public Transform leftEndPoint, rightEndPoint;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

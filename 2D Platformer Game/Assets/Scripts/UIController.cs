@@ -73,7 +73,7 @@ public class UIController : MonoBehaviour
         }
 
        if(shouldFadeFromBlack)
-        {
+       {
             //the screen is faded, return it to normal 
 
             fadeScreenImage.color = new Color(fadeScreenImage.color.r,
@@ -86,7 +86,7 @@ public class UIController : MonoBehaviour
             {
                 shouldFadeFromBlack = true;
             }
-        }
+       }
     }
 
     public void UpdateHealthDisplay()

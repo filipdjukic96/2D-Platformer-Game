@@ -130,6 +130,9 @@ public class LevelManager : MonoBehaviour
         //wait a little more
         yield return new WaitForSeconds((1 / UIController.instance.fadeScreenSpeed) + .25f);
 
+        //store the current scene's name as UNLOCKED in PlayerPrefs
+        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_unlocked", 1);
+
         //load the next level
         SceneManager.LoadScene(nextLevelToLoad);
     }

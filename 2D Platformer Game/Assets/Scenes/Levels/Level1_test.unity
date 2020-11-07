@@ -14323,7 +14323,7 @@ PrefabInstance:
     - target: {fileID: 9167125016899546823, guid: 88553888f3874894e937e20169cb3b56,
         type: 3}
       propertyPath: nextLevelToLoad
-      value: Level2_test
+      value: Level Select
       objectReference: {fileID: 0}
     - target: {fileID: 9167125017336851262, guid: 88553888f3874894e937e20169cb3b56,
         type: 3}

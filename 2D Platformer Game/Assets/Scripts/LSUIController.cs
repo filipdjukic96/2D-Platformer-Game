@@ -13,6 +13,14 @@ public class LSUIController : MonoBehaviour
     public Image fadeScreenImage;
     public float fadeScreenSpeed;
 
+    //panel displaying level info 
+    public GameObject levelInfoPanel;
+    public Text levelName;
+
+    //level info labels
+    public Text gemsScore, gemsMaxScore;
+    public Text timeBest, timeTarget;
+    
 
     // PRIVATE //
     private bool shouldFadeToBlack, shouldFadeFromBlack;
@@ -74,5 +82,37 @@ public class LSUIController : MonoBehaviour
     {
         shouldFadeFromBlack = true;
         shouldFadeToBlack = false;
+    }
+
+    public void ShowLevelInfo(MapPoint currentPoint)
+    {
+        //set level name
+        levelName.text = currentPoint.levelName;
+
+        //set gems info
+        gemsScore.text = "FOUND: " + currentPoint.gemsScoreCollected;
+        gemsMaxScore.text = "IN LEVEL: " + currentPoint.gemsScoreTotal;
+
+        //time info
+        if(currentPoint.bestTime == 0)
+        {
+            timeBest.text = "BEST: ---";
+        }
+        else
+        {
+            //F1 means float number with one decimal place
+            timeBest.text = "BEST: " + currentPoint.bestTime.ToString("F1") + "s";
+        }
+
+        timeTarget.text = "TARGET: " + currentPoint.targetTime + "s";
+
+        
+        //show level info panel
+        levelInfoPanel.SetActive(true);
+    }
+
+    public void HideLevelInfo()
+    {
+        levelInfoPanel.SetActive(false);
     }
 }

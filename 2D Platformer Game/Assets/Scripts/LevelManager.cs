@@ -19,6 +19,8 @@ public class LevelManager : MonoBehaviour
     //next level to load
     public string nextLevelToLoad;
 
+    //time played in level
+    public float timeInLevel;
 
     private void Awake()
     {
@@ -28,13 +30,15 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        timeInLevel = 0f; //set to 0
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //update timer clock
+        //WON'T BE UPDATED WHEN THE GAME IS PAUSED
+        timeInLevel += Time.deltaTime; 
     }
 
     public void AddGemScore(int score)
@@ -113,6 +117,9 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator EndLevelCoroutine()
     {
+        //play the correct music
+        AudioManager.instance.PlayLevelEndMusic();
+
         //disable the input
         PlayerController.instance.stopInput = true;
         //stop the Camera follow
@@ -128,13 +135,60 @@ public class LevelManager : MonoBehaviour
         UIController.instance.FadeToBlack();
 
         //wait a little more
-        yield return new WaitForSeconds((1 / UIController.instance.fadeScreenSpeed) + .25f);
+        yield return new WaitForSeconds((1 / UIController.instance.fadeScreenSpeed) + 3f);
+
+
+        //SAVE LEVEL INFO START
 
         //store the current scene's name as UNLOCKED in PlayerPrefs
         PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_unlocked", 1);
 
+        //set current unlocked level so the correct point could be loaded in Level Select
+        PlayerPrefs.SetString("CurrentLevel", SceneManager.GetActiveScene().name);
+
+        //save gems collected in PlayerPrefs
+        UpdateGemScoreSave();
+
+        //save time played in PlayerPrefs
+        UpdateTimePlayedSave();
+
+        //SAVE LEVEL INFO END
+
+
         //load the next level
         SceneManager.LoadScene(nextLevelToLoad);
+    }
+
+    private void UpdateGemScoreSave()
+    {
+        if(PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "_gems"))
+        {
+            if(PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_gems") < gemScoreCollected)
+            {
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_gems", gemScoreCollected);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_gems", gemScoreCollected);
+        }
+        
+    }
+
+    private void UpdateTimePlayedSave()
+    {
+        if(PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "_time"))
+        {
+            if(PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + "_time") > timeInLevel)
+            {
+                PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_time", timeInLevel);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_time", timeInLevel);
+        }
+
     }
 
 }

@@ -12,6 +12,11 @@ public class LSManager : MonoBehaviour
     //reference to the player
     public LSPlayer thePlayer;
 
+
+
+    // PRIVATE //
+    private MapPoint[] allPoints;
+
     private void Awake()
     {
         instance = this;
@@ -20,7 +25,20 @@ public class LSManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        allPoints = FindObjectsOfType<MapPoint>();
+
+        //find the current MapPoint
+        if(PlayerPrefs.HasKey("CurrentLevel"))
+        {
+            foreach(MapPoint mapPoint in allPoints)
+            {
+                if(mapPoint.levelToLoad == PlayerPrefs.GetString("CurrentLevel"))
+                {
+                    thePlayer.transform.position = mapPoint.transform.position;
+                    thePlayer.currentPoint = mapPoint;
+                }
+            }
+        }
     }
 
     // Update is called once per frame
@@ -37,6 +55,9 @@ public class LSManager : MonoBehaviour
     //coroutine for loading levels
     public IEnumerator LoadLevelCoroutine()
     {
+        //play sound effect for level selected
+        AudioManager.instance.PlaySFX(AudioManager.SoundEffects.LevelSelected);
+
         //fade to black
         LSUIController.instance.FadeToBlack();
 

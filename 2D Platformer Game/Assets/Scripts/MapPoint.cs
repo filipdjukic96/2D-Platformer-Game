@@ -21,6 +21,17 @@ public class MapPoint : MonoBehaviour
     //level to check if it's unlocked
     public string levelToCheck;
 
+    //level name to display
+    public string levelName;
+
+    //gems track
+    public int gemsScoreCollected, gemsScoreTotal;
+    //time track
+    public float bestTime, targetTime;
+
+    //badges
+    public GameObject gemBadge;
+    public GameObject timeBadge;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +39,30 @@ public class MapPoint : MonoBehaviour
         //if it's a level and has a set level name
         if(isLevel && levelToLoad != "")
         {
+            //extract the level info (GEMS + TIME)
+            //gems
+            if(PlayerPrefs.HasKey(levelToLoad + "_gems"))
+            {
+                gemsScoreCollected = PlayerPrefs.GetInt(levelToLoad + "_gems");
+            }
+            //time
+            if(PlayerPrefs.HasKey(levelToLoad + "_time"))
+            {
+                bestTime = PlayerPrefs.GetFloat(levelToLoad + "_time");
+            }
+
+            //display badges if max score and best time is reached
+            if(gemsScoreCollected >= gemsScoreTotal)
+            {
+                gemBadge.SetActive(true);
+            }
+            
+            if(bestTime != 0 && bestTime <= targetTime)
+            {
+                timeBadge.SetActive(true);
+            }
+
+
             //lock the level just in case, then see if it needs to be unlocked
             isLocked = true;
 
@@ -62,5 +97,6 @@ public class MapPoint : MonoBehaviour
     {
         
     }
+
 
 }

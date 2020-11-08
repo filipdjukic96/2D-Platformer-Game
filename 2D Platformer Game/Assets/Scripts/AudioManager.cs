@@ -60,4 +60,11 @@ public class AudioManager : MonoBehaviour
 
         soundEffects[(int)soundToPlay].Play();
     }
+
+    public void PlayLevelEndMusic()
+    {
+        //stop background music first
+        backgroundMusic.Stop();
+        levelEndMusic.Play();
+    }
 }

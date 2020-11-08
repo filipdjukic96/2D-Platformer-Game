@@ -74,8 +74,12 @@ public class LSPlayer : MonoBehaviour
             }
         }
 
+        //if the current point is a level and it's not locked
         if(currentPoint.isLevel && !currentPoint.isLocked && currentPoint.levelToLoad != "")
         {
+            //display level info
+            LSUIController.instance.ShowLevelInfo(currentPoint);
+
             //check if the Player has pressed the JUMP button
             //load the level
             if(Input.GetButtonDown("Jump"))
@@ -90,6 +94,13 @@ public class LSPlayer : MonoBehaviour
 
     private void SetNextPoint(MapPoint nextPoint)
     {
+        //move to next point
         currentPoint = nextPoint;
+
+        //hide level info panel from previous point
+        LSUIController.instance.HideLevelInfo();
+
+        //play sound effect for map movement
+        AudioManager.instance.PlaySFX(AudioManager.SoundEffects.MapMovement);
     }
 }

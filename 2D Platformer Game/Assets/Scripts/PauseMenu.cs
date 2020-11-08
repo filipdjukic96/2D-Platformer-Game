@@ -39,7 +39,9 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseUnpause()
     {
-        if(isPaused)
+        Debug.Log("pauseunpause clicked");
+
+        if (isPaused)
         {
             isPaused = false;
             pauseScreen.SetActive(false);
@@ -56,12 +58,20 @@ public class PauseMenu : MonoBehaviour
 
     public void LevelSelect()
     {
+        Debug.Log("level Select clicked");
+
+        //start at the scene you were last in
+        //set 'CurrentLevel' in PlayerPrefs
+        PlayerPrefs.SetString("CurrentLevel", SceneManager.GetActiveScene().name);
+
         SceneManager.LoadScene(levelSelect);
         Time.timeScale = 1f; //normal speed - so it doesn't remain at 0 when the game is paused and the level changed
     }
 
     public void MainMenu()
     {
+        Debug.Log("main menu clicked");
+
         SceneManager.LoadScene(mainMenu);
         Time.timeScale = 1f; //normal speed
     }

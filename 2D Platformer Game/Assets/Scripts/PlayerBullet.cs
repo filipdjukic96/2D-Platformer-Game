@@ -7,8 +7,8 @@ public class PlayerBullet : MonoBehaviour
     // PUBLIC //
     public float bulletSpeed;
 
-    //effect of enemy dying
-    public GameObject deathEffect;
+    //effect of bullet destroy
+    public GameObject destroyEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +35,7 @@ public class PlayerBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         //if the bullet hit an enemy
         if (other.CompareTag("Enemy"))
         {
@@ -43,41 +44,50 @@ public class PlayerBullet : MonoBehaviour
             //bullet hit an enemy, damage the enemy
 
             //CASE I: the Box Collider 2D collided with the Box Collider of the enemy sprite
+ 
+            //CASE I
+            //!!!!! cannot damage the other.gameObject only because it would only damage the enemy sprite but not the whole object itself !!!!!
+            //this is why we need to damage the parent object
+            other.transform.parent.gameObject.GetComponent<EnemyController>().DamageEnemy();
+
+            //instantiate a destroy effect for the bullet
+            Instantiate(destroyEffect, transform.position, transform.rotation);
+
+            //at the end, destroy the bullet object
+            Destroy(gameObject);
+
+        }
+
+        //COMMENTED BECAUSE THE COLLISION WOULD GET DETECTED TWICE
+        /*
+        else if (other.CompareTag("EnemyObject"))
+        {
             //CASE II: the Box Collider 2D collided with the Box Collider of the enemy object
+            Debug.Log("Enemy object hit");
 
-            //if other's parent is != null, that means we collided with the enemy sprite
-            if (other.transform.parent != null)
-            {
-                //CASE I
-                //!!!!! cannot damage the other.gameObject only because it would only damage the enemy sprite but not the whole object itself !!!!!
-                //this is why we need to damage the parent object
-                other.transform.parent.gameObject.GetComponent<EnemyController>().DamageEnemy();
-            }
-            else //collided with the enemy object
-            {
-                //CASE II
-                //the enemy object was hit, damage it
-                other.gameObject.GetComponent<EnemyController>().DamageEnemy();
+            //damage the enemy object
+            other.gameObject.GetComponent<EnemyController>().DamageEnemy();
 
-            }
-
+            Instantiate(destroyEffect, transform.position, transform.rotation);
 
             //at the end, destroy the bullet
             Destroy(gameObject);
 
-        }
+        }*/
+
+
         //only do something if the bullet has collided with anything other than the Player
         //this is done to make sure the bullet isn't destroyed when the Player shoots while running
         //because then the bullet might collide with the player
-        else if (!other.CompareTag("Player")) 
+        else if (!other.CompareTag("Player") && !other.CompareTag("EnemyObject")) 
         {
             Debug.Log("Other hit");
-            //bullet hit something else, instantiate a death effect (bullet explode)
-            //bullet's position and rotation are used instead of the hit object's
-            //TODO: ADD A SEPARATE BULLET-HIT EFFECT
-            //Instantiate(deathEffect, transform.position, transform.rotation);
 
-            //at the end, destroy the bullet
+            //bullet hit something else, instantiate an effect (bullet explode)
+            //bullet's position and rotation are used
+            Instantiate(destroyEffect, transform.position, transform.rotation);
+
+            //at the end, destroy the bullet object
             Destroy(gameObject);
         }
 

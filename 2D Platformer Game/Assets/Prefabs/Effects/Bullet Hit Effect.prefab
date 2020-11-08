@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8056039718647266689
+--- !u!1 &7270423839285141616
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8056039718647266693}
-  - component: {fileID: 8056039718647266694}
-  - component: {fileID: 676403622}
-  - component: {fileID: 676403623}
-  - component: {fileID: 676403624}
+  - component: {fileID: 7270423839285141628}
+  - component: {fileID: 7270423839285141629}
+  - component: {fileID: 7270423839285141618}
+  - component: {fileID: 7270423839285141619}
   m_Layer: 0
-  m_Name: Player Bullet
+  m_Name: Bullet Hit Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8056039718647266693
+--- !u!4 &7270423839285141628
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8056039718647266689}
+  m_GameObject: {fileID: 7270423839285141616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 67.33, y: -1.14, z: 0}
+  m_LocalPosition: {x: 55.00683, y: 1.1755123, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8056039718647266694
+--- !u!212 &7270423839285141629
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8056039718647266689}
+  m_GameObject: {fileID: 7270423839285141616}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -70,48 +69,32 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -63188899
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7711528252862647132, guid: a491005af006546438fb0c173f80c495,
+  m_Sprite: {fileID: -8092295105046505211, guid: 247279f517534c44f85ed2a14408d45e,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.75, y: 0.6875}
+  m_Size: {x: 2.0317461, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &676403622
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8056039718647266689}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.24681774, y: 0.00000008940697}
-  serializedVersion: 2
-  m_Radius: 0.33783183
---- !u!95 &676403623
+--- !u!95 &7270423839285141618
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8056039718647266689}
+  m_GameObject: {fileID: 7270423839285141616}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6780fe64cf9273246880bb7f6f7b3431, type: 2}
+  m_Controller: {fileID: 9100000, guid: 07326ed6bd8c02346839511cf4a224b3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -120,18 +103,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &676403624
+--- !u!114 &7270423839285141619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8056039718647266689}
+  m_GameObject: {fileID: 7270423839285141616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63cd1876d2b91a246a0b7e4ccf4249d6, type: 3}
+  m_Script: {fileID: 11500000, guid: e5beb792057cc4249a899158540f37aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 12
-  destroyEffect: {fileID: 7270423839285141616, guid: 5baae8b5dcbd47a46968e911def2ca0d,
-    type: 3}
+  lifeTime: 0.5

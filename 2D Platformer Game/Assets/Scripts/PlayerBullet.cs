@@ -43,12 +43,28 @@ public class PlayerBullet : MonoBehaviour
 
             //bullet hit an enemy, damage the enemy
 
-            //CASE I: the Box Collider 2D collided with the Box Collider of the enemy sprite
- 
-            //CASE I
+            //the Box Collider 2D collided with the Box Collider of the enemy sprite
+
+
             //!!!!! cannot damage the other.gameObject only because it would only damage the enemy sprite but not the whole object itself !!!!!
             //this is why we need to damage the parent object
-            other.transform.parent.gameObject.GetComponent<EnemyController>().DamageEnemy();
+            //if it has an EnemyController attached, it's either a frog or an opossum
+            if (other.transform.parent.gameObject.TryGetComponent<EnemyController>(out var enemyController))
+            {
+                Debug.Log("Hit frog or opossum enemy with bullet");
+                enemyController.DamageEnemy();
+            }
+            //otherwise, it must be an eagle enemy - do if just in case
+            else if (other.transform.parent.gameObject.TryGetComponent<FlyingEnemyController>(out var flyingEnemyController))
+            {
+                Debug.Log("Hit eagle enemy with bullet");
+                flyingEnemyController.DamageEnemy();
+            }
+            else
+            {
+                //unknown enemy type
+                Debug.Log("Hit unknown enemy with bullet");
+            }
 
             //instantiate a destroy effect for the bullet
             Instantiate(destroyEffect, transform.position, transform.rotation);
@@ -76,7 +92,7 @@ public class PlayerBullet : MonoBehaviour
         }*/
 
 
-        //only do something if the bullet has collided with anything other than the Player
+        //only do something if the bullet has collided with anything other than the Player (and EnemyObject bcs of two colliders on enemies)
         //this is done to make sure the bullet isn't destroyed when the Player shoots while running
         //because then the bullet might collide with the player
         else if (!other.CompareTag("Player") && !other.CompareTag("EnemyObject")) 

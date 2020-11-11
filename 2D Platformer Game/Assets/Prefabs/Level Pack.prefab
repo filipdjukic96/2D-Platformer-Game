@@ -1535,7 +1535,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7854475496087044455}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -110.83, y: -8.5, z: 179.15312}
+  m_LocalPosition: {x: -105.6, y: -8.4, z: 179.15312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7854475494943162611}
@@ -1650,7 +1650,7 @@ MonoBehaviour:
   groundCheckPoint: {fileID: 7854475494943162611}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   knockBackDuration: 0.25
   knockBackForce: 5
   stompBoxCollider: {fileID: 9167125017748533137}

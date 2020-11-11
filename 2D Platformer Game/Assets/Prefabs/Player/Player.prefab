@@ -275,7 +275,7 @@ MonoBehaviour:
   groundCheckPoint: {fileID: 1312966945570689410}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   knockBackDuration: 0.25
   knockBackForce: 5
   stompBoxCollider: {fileID: 1408532192}
@@ -283,6 +283,7 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 86288689}
   bounceForce: 15
+  stopInput: 0
 --- !u!95 &1312966946849574924
 Animator:
   serializedVersion: 3

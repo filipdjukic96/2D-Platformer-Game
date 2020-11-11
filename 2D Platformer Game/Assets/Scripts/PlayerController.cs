@@ -229,4 +229,26 @@ public class PlayerController : MonoBehaviour
             AudioManager.instance.PlaySFX(AudioManager.SoundEffects.Shot);
         }
     }
+
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        //if the Player has landed on a platform
+        //make the Player a child of the platform
+        if(other.gameObject.CompareTag("Platform"))
+        {
+            transform.parent = other.transform; //set Player as child of Platform object
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        //if the Player has jumped away from the platform
+        //the Platform object should no longer be the parent of the Player object
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            transform.parent = null; //Player no longer has a parent
+        }
+    }
+
 }

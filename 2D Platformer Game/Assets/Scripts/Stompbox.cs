@@ -29,22 +29,35 @@ public class Stompbox : MonoBehaviour
 
             //DAMAGE ENEMY
 
-            //CASE I: the Box Collider 2D collided with the Box Collider of the enemy sprite
-            //CASE II: the Box Collider 2D collided with the Box Collider of the enemy object
+            // the Box Collider 2D collided with the Box Collider of the enemy sprite
 
             //if other's parent is != null, that means we collided with the enemy sprite
             if (other.transform.parent != null)
             {
-                //CASE I
+                //TODO: CONSIDER MAKING A SEPARATE ENEMY HEALTH CONTROLLER SCRIPT WHICH WILL BE THE SAME FOR EVERY ENEMY TYPE
+
+
                 //!!!!! cannot damage the other.gameObject only because it would only damage the enemy sprite but not the whole object itself !!!!!
                 //this is why we need to damage the parent object
-                other.transform.parent.gameObject.GetComponent<EnemyController>().DamageEnemy();
-            }
-            else //collided with the enemy object
-            {
-                //CASE II
-                //the enemy object was hit, damage it
-                other.gameObject.GetComponent<EnemyController>().DamageEnemy();
+
+                //if it has an EnemyController attached, it's either a frog or an opossum
+                if(other.transform.parent.gameObject.TryGetComponent<EnemyController>(out var enemyController))
+                {
+                    Debug.Log("Hit frog or opossum enemy");
+                    enemyController.DamageEnemy();
+                }
+                //otherwise, it must be an eagle enemy - do if just in case
+                else if (other.transform.parent.gameObject.TryGetComponent<FlyingEnemyController>(out var flyingEnemyController))
+                {
+                    Debug.Log("Hit eagle enemy");
+                    flyingEnemyController.DamageEnemy();
+                }
+                else
+                {
+                    //unknown enemy type
+                    Debug.Log("Hit unknown enemy");
+                }
+
             }
 
             //make the Player bounce off the enemy

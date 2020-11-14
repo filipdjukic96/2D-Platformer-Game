@@ -36,6 +36,10 @@ public class PlayerController : MonoBehaviour
     [Header("Level End")]
     public bool stopInput; //inuput disabled when the level ends
 
+    [Header("Particle Effects")]
+    public ParticleSystem footstepsEffect;
+    public ParticleSystem impactEffect;
+
 
     //PRIVATE//
     private bool isGrounded;//denotes if the player is touching the ground
@@ -47,6 +51,11 @@ public class PlayerController : MonoBehaviour
     //counter for counting knockback
     private float knockBackCounter;
 
+    //for particle generation speed changes 
+    private ParticleSystem.EmissionModule footEmission;
+
+    //denotes if the Player was on the ground in the previous frame
+    private bool wasOnGround;
   
     private void Awake()
     {
@@ -61,6 +70,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         //find the component of type SpriteRenderer that is attached to the same object this script is attached to
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        //access the emission
+        footEmission = footstepsEffect.emission;
     }
 
     // Update is called once per frame
@@ -118,6 +130,8 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+
+        SetParticleEffect();
 
         SetAnimatorParameters();
     }
@@ -200,6 +214,45 @@ public class PlayerController : MonoBehaviour
             //facing left - knock back to the right
             rigidBody.velocity = new Vector2(knockBackForce, rigidBody.velocity.y);
         }
+    }
+
+    private void SetParticleEffect()
+    {
+        //SHOWING FOOTSTEPS EFFECT
+
+        //if the player is moving and is on the ground
+        if (Input.GetAxisRaw("Horizontal") != 0 && isGrounded)
+        {
+            footEmission.rateOverTime = 35f;
+        }
+        else
+        {
+            footEmission.rateOverTime = 0f; //stop spawning particles
+        }
+
+
+        //SHOWING IMPACT EFFECT
+
+        //TODO: commented for now until the PUFF effect is created
+        /*
+        if(!wasOnGround && isGrounded)
+        {
+            //the Player just hit the ground
+
+            //activate the impact effect
+            impactEffect.gameObject.SetActive(true);
+            impactEffect.Stop();
+
+            //move the impact effect at the Player's feet (where the footsteps effect is located)
+            impactEffect.transform.position = footstepsEffect.transform.position;
+
+            //play the impact effect
+            impactEffect.Play();
+        }
+
+        //update wasOnGround flag
+        wasOnGround = isGrounded;
+        */
     }
 
     private void SetAnimatorParameters()

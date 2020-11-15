@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3389463460779867092}
   - component: {fileID: 3389463460779867093}
   - component: {fileID: 3389463460779867099}
+  - component: {fileID: 2085274355}
   m_Layer: 0
   m_Name: Enemy Opossum
   m_TagString: EnemyObject
@@ -29,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3389463460779867090}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 75.94, y: -1.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -173,15 +174,6 @@ MonoBehaviour:
   enemySpriteRenderer: {fileID: 3389463461333242739}
   moveTime: 5
   waitTime: 0
-  currentHealth: 0
-  maxHealth: 1
-  deathEffect: {fileID: 7740587661246690353, guid: 5d2f000abff604a4bba615d61d1576a5,
-    type: 3}
-  collectibleCherry: {fileID: 6286729781534217076, guid: 272bcd3f0b9f5c544bb9912237ce21e8,
-    type: 3}
-  collectibleFire: {fileID: 5571270937750512461, guid: 0d3693944bffb3845b6ff4e5d1812754,
-    type: 3}
-  chanceToDropCollectible: 30.3
 --- !u!114 &3389463460779867099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +186,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd4f9a05999d534bad9c54f775daeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2085274355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389463460779867090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6570f420eb6e3cc48ad523e9fddc1f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 1
+  deathEffect: {fileID: 7740587661246690353, guid: 5d2f000abff604a4bba615d61d1576a5,
+    type: 3}
+  collectibleCherry: {fileID: 6286729781534217076, guid: 272bcd3f0b9f5c544bb9912237ce21e8,
+    type: 3}
+  collectibleFire: {fileID: 5571270937750512461, guid: 0d3693944bffb3845b6ff4e5d1812754,
+    type: 3}
+  chanceToDropCollectible: 20.3
 --- !u!1 &3389463460885343993
 GameObject:
   m_ObjectHideFlags: 0

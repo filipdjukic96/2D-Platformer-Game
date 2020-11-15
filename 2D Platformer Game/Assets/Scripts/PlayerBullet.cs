@@ -48,22 +48,16 @@ public class PlayerBullet : MonoBehaviour
 
             //!!!!! cannot damage the other.gameObject only because it would only damage the enemy sprite but not the whole object itself !!!!!
             //this is why we need to damage the parent object
-            //if it has an EnemyController attached, it's either a frog or an opossum
-            if (other.transform.parent.gameObject.TryGetComponent<EnemyController>(out var enemyController))
+            //if it has an EnemyController attached, it's a real enemy
+            if (other.transform.parent.gameObject.TryGetComponent<EnemyHealthController>(out var enemyHealthController))
             {
-                Debug.Log("Hit frog or opossum enemy with bullet");
-                enemyController.DamageEnemy();
-            }
-            //otherwise, it must be an eagle enemy - do if just in case
-            else if (other.transform.parent.gameObject.TryGetComponent<FlyingEnemyController>(out var flyingEnemyController))
-            {
-                Debug.Log("Hit eagle enemy with bullet");
-                flyingEnemyController.DamageEnemy();
+                Debug.Log("Hit enemy with bullet");
+                enemyHealthController.DamageEnemy();
             }
             else
             {
                 //unknown enemy type
-                Debug.Log("Hit unknown enemy with bullet");
+                Debug.Log("Enemy has no health controller");
             }
 
             //instantiate a destroy effect for the bullet
@@ -73,25 +67,6 @@ public class PlayerBullet : MonoBehaviour
             Destroy(gameObject);
 
         }
-
-        //COMMENTED BECAUSE THE COLLISION WOULD GET DETECTED TWICE
-        /*
-        else if (other.CompareTag("EnemyObject"))
-        {
-            //CASE II: the Box Collider 2D collided with the Box Collider of the enemy object
-            Debug.Log("Enemy object hit");
-
-            //damage the enemy object
-            other.gameObject.GetComponent<EnemyController>().DamageEnemy();
-
-            Instantiate(destroyEffect, transform.position, transform.rotation);
-
-            //at the end, destroy the bullet
-            Destroy(gameObject);
-
-        }*/
-
-
         //only do something if the bullet has collided with anything other than the Player (and EnemyObject bcs of two colliders on enemies)
         //this is done to make sure the bullet isn't destroyed when the Player shoots while running
         //because then the bullet might collide with the player

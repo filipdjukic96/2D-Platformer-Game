@@ -234,7 +234,7 @@ public class PlayerController : MonoBehaviour
         //SHOWING IMPACT EFFECT
 
         //TODO: commented for now until the PUFF effect is created
-        /*
+        
         if(!wasOnGround && isGrounded)
         {
             //the Player just hit the ground
@@ -252,7 +252,7 @@ public class PlayerController : MonoBehaviour
 
         //update wasOnGround flag
         wasOnGround = isGrounded;
-        */
+        
     }
 
     private void SetAnimatorParameters()

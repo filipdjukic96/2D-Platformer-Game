@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5648106643301865527}
   - component: {fileID: 5648106643301865520}
   - component: {fileID: 5648106643301865521}
+  - component: {fileID: 1096323689}
   m_Layer: 0
   m_Name: Enemy Eagle
   m_TagString: EnemyObject
@@ -77,15 +78,6 @@ MonoBehaviour:
   distanceToAttackPlayer: 5
   chaseSpeed: 10
   waitAfterAttack: 2
-  currentHealth: 0
-  maxHealth: 4
-  deathEffect: {fileID: 7740587661246690353, guid: 5d2f000abff604a4bba615d61d1576a5,
-    type: 3}
-  collectibleCherry: {fileID: 6286729781534217076, guid: 272bcd3f0b9f5c544bb9912237ce21e8,
-    type: 3}
-  collectibleFire: {fileID: 5571270937750512461, guid: 0d3693944bffb3845b6ff4e5d1812754,
-    type: 3}
-  chanceToDropCollectible: 75.4
 --- !u!50 &5648106643301865527
 Rigidbody2D:
   serializedVersion: 4
@@ -135,6 +127,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd4f9a05999d534bad9c54f775daeb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1096323689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5648106643301865517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6570f420eb6e3cc48ad523e9fddc1f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 4
+  deathEffect: {fileID: 7740587661246690353, guid: 5d2f000abff604a4bba615d61d1576a5,
+    type: 3}
+  collectibleCherry: {fileID: 6286729781534217076, guid: 272bcd3f0b9f5c544bb9912237ce21e8,
+    type: 3}
+  collectibleFire: {fileID: 5571270937750512461, guid: 0d3693944bffb3845b6ff4e5d1812754,
+    type: 3}
+  chanceToDropCollectible: 50
 --- !u!1 &5648106643622715244
 GameObject:
   m_ObjectHideFlags: 0

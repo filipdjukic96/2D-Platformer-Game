@@ -12,7 +12,8 @@ public class BossTankController : MonoBehaviour
     {
         Shooting,
         Hurt,
-        Moving
+        Moving,
+        Defeated
     };
 
 
@@ -35,6 +36,15 @@ public class BossTankController : MonoBehaviour
     //left and right point of the boss' movement
     public Transform leftPoint, rightPoint;
 
+    //mine to drop while moving
+    public GameObject mine;
+
+    //point from which the mines come out
+    public Transform minePoint;
+
+    //time between mines
+    public float timeBetweenMines;
+
 
 
     [Header("Shooting")]
@@ -53,6 +63,26 @@ public class BossTankController : MonoBehaviour
     //time to wait after the boss is hurt
     public float hurtTime;
 
+    //boss' hit box
+    public GameObject hitBox;
+
+
+
+    [Header("Health")]
+    public int health = 5;
+
+    public GameObject explosion; //explosion the the boss is defeated
+
+    public GameObject winPlatform; //platform to be shown after the boss is defeated
+
+    //how much shots speed up when the boss is hit
+    public float shotSpeedUp;
+
+    //how much time between mines speeds up when the boss is hit
+    public float mineSpeedUp;
+    
+
+
 
     // PRIVATE //
 
@@ -64,6 +94,12 @@ public class BossTankController : MonoBehaviour
 
     //hurt time counter
     private float hurtCounter;
+
+    //counter to drop mines
+    private float mineCounter;
+
+    //denotes if the boss is defeated
+    private bool isDefeated;
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +123,7 @@ public class BossTankController : MonoBehaviour
             case BossStates.Moving:
                 BossMoving();
                 break;
+
 
         }
 
@@ -112,14 +149,57 @@ public class BossTankController : MonoBehaviour
 
         //set Hit trigger in the animator
         bossAnimator.SetTrigger("Hit");
+
+        //play boss hit sfx
+        AudioManager.instance.PlaySFX(AudioManager.SoundEffects.BossHit);
+
+        //remove all existing mines
+
+        BossTankMine[] mines = FindObjectsOfType<BossTankMine>();
+
+        if(mines.Length > 0)
+        {
+            foreach(BossTankMine mine in mines)
+            {
+                mine.Explode(); //explode the mine
+            }
+        }
+
+        health--;
+
+        if(health <= 0)
+        {
+            //boss defeated
+            isDefeated = true;
+        }
+        else
+        {
+            //speed up bullet shooting and mines
+
+            timeBetweenBulletShots /= shotSpeedUp;
+
+            timeBetweenMines /= mineSpeedUp;
+        }
     }
 
     private void BossShooting()
     {
 
-        //fire bullet
+        //shot counter
+        shotCounter -= Time.deltaTime;
 
-        //
+        if(shotCounter <= 0)
+        {
+            //reset the counter
+            shotCounter = timeBetweenBulletShots;
+
+            //instantiate the bullet
+            var newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
+
+            //set the bullet's scale to match the Boss's scale
+            //so the bullet would face the right direction
+            newBullet.transform.localScale = theBoss.localScale;
+        }
 
     }
 
@@ -134,6 +214,28 @@ public class BossTankController : MonoBehaviour
             if(hurtCounter <= 0)
             {
                 currentState = BossStates.Moving;
+
+                //reset mine counter
+                mineCounter = 0f; //->a mine is dropped instantly
+
+                //check if the boss is defeated
+                if(isDefeated)
+                {
+                    //deactivate the boss
+                    theBoss.gameObject.SetActive(false);
+
+                    //instantiate an explosion
+                    Instantiate(explosion, theBoss.position, theBoss.rotation);
+
+                    //activate the win platform
+                    winPlatform.SetActive(true);
+
+                    //stop boss music
+                    AudioManager.instance.StopBossMusic();
+
+                    //switch to defeated state
+                    currentState = BossStates.Defeated;
+                }
             }
         }
 
@@ -174,6 +276,17 @@ public class BossTankController : MonoBehaviour
             }
         }
 
+
+        mineCounter -= Time.deltaTime;
+
+        if(mineCounter <= 0)
+        {
+            //reset counter
+            mineCounter = timeBetweenMines;
+
+            //drop a mine
+            Instantiate(mine, minePoint.position, minePoint.rotation);
+        }
     }
 
     private void EndMovement()
@@ -182,9 +295,12 @@ public class BossTankController : MonoBehaviour
         currentState = BossStates.Shooting;
 
         //reset shot counter
-        shotCounter = timeBetweenBulletShots;
+        shotCounter = 0f; //-> to shoot quicker
 
         //set the StopMoving trigger in the animator
         bossAnimator.SetTrigger("StopMoving");
+
+        //activate the hit box
+        hitBox.SetActive(true);
     }
 }

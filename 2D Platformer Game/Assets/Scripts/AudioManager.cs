@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
     //audio sources
     public AudioSource backgroundMusic;
     public AudioSource levelEndMusic;
+    public AudioSource bossBattleMusic;
 
     private void Awake()
     {
@@ -66,5 +67,18 @@ public class AudioManager : MonoBehaviour
         //stop background music first
         backgroundMusic.Stop();
         levelEndMusic.Play();
+    }
+
+    public void PlayBossMusic()
+    {
+        //stop background music first
+        backgroundMusic.Stop();
+        bossBattleMusic.Play();
+    }
+
+    public void StopBossMusic()
+    {
+        bossBattleMusic.Stop();
+        backgroundMusic.Play();
     }
 }

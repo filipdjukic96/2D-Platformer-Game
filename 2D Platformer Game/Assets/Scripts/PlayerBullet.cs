@@ -13,7 +13,8 @@ public class PlayerBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //play shoot sound effect on Start
+        AudioManager.instance.PlaySFX(AudioManager.SoundEffects.Shot);
     }
 
     // Update is called once per frame

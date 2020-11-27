@@ -278,8 +278,6 @@ public class PlayerController : MonoBehaviour
             //decrease the fire pickups collected 
             LevelManager.instance.RemoveFireScore();
 
-            //play shoot sound effect
-            AudioManager.instance.PlaySFX(AudioManager.SoundEffects.Shot);
         }
     }
 

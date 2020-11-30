@@ -18,6 +18,14 @@ public class BossTankHitBox : MonoBehaviour
         
     }
 
+    public void TakeHit()
+    {
+        //the Player has hit the boss with a bullet
+        bossController.TakeHit();
+
+        //deactivate this hit box until the boss is moved
+        gameObject.SetActive(false);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -34,4 +42,5 @@ public class BossTankHitBox : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
 }

@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - EnemyObject
   - Platform
+  - TankBoss
+  - KnightBoss
   layers:
   - Default
   - TransparentFX

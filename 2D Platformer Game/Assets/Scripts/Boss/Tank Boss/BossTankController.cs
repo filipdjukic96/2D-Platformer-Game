@@ -68,13 +68,8 @@ public class BossTankController : MonoBehaviour
 
 
 
-    [Header("Health")]
-    public int health = 5;
-
-    public GameObject explosion; //explosion the the boss is defeated
-
-    public GameObject winPlatform; //platform to be shown after the boss is defeated
-
+    [Header("Health Reduction")]
+   
     //how much shots speed up when the boss is hit
     public float shotSpeedUp;
 
@@ -101,10 +96,16 @@ public class BossTankController : MonoBehaviour
     //denotes if the boss is defeated
     private bool isDefeated;
 
+    //BossHealthController script attached to this object
+    private BossHealthController bossHealthController;
+
     // Start is called before the first frame update
     void Start()
     {
-        currentState = BossStates.Shooting; 
+        currentState = BossStates.Shooting;
+
+        //find boss health controller
+        bossHealthController = gameObject.GetComponent<BossHealthController>();
     }
 
     // Update is called once per frame
@@ -165,9 +166,9 @@ public class BossTankController : MonoBehaviour
             }
         }
 
-        health--;
+        bossHealthController.TakeHit();
 
-        if(health <= 0)
+        if(bossHealthController.CurrentHealth() <= 0)
         {
             //boss defeated
             isDefeated = true;
@@ -193,14 +194,19 @@ public class BossTankController : MonoBehaviour
             //reset the counter
             shotCounter = timeBetweenBulletShots;
 
-            //instantiate the bullet
-            var newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
-
-            //set the bullet's scale to match the Boss's scale
-            //so the bullet would face the right direction
-            newBullet.transform.localScale = theBoss.localScale;
+            ShootBullet();
         }
 
+    }
+
+    private void ShootBullet()
+    {
+        //instantiate the bullet
+        var newBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
+
+        //set the bullet's scale to match the Boss's scale
+        //so the bullet would face the right direction
+        newBullet.transform.localScale = theBoss.localScale;
     }
 
 
@@ -221,19 +227,7 @@ public class BossTankController : MonoBehaviour
                 //check if the boss is defeated
                 if(isDefeated)
                 {
-                    //deactivate the boss
-                    theBoss.gameObject.SetActive(false);
-
-                    //instantiate an explosion
-                    Instantiate(explosion, theBoss.position, theBoss.rotation);
-
-                    //activate the win platform
-                    winPlatform.SetActive(true);
-
-                    //stop boss music
-                    AudioManager.instance.StopBossMusic();
-
-                    //switch to defeated state
+                    //switch to defeated state - do nothing
                     currentState = BossStates.Defeated;
                 }
             }

@@ -6,13 +6,9 @@ public class BossKnightWeapon : MonoBehaviour
 {
 
 	// PUBLIC //
-
-	public int attackDamage = 20;
-	public int enragedAttackDamage = 40;
-
-	public Vector3 attackOffset;
-	public float attackRange = 1f;
-
+	public Transform hitPoint;
+	public LayerMask whatIsPlayer;
+	public float overlapDiameter = 1f;
 
 	// Start is called before the first frame update
 	void Start()
@@ -28,27 +24,26 @@ public class BossKnightWeapon : MonoBehaviour
 
 	public void Attack()
 	{
-		Vector3 pos = transform.position;
-		pos += transform.right * attackOffset.x;
-		pos += transform.up * attackOffset.y;
+		//does an overlap and checks if any other object collides with the circle
+		//creates a circle at hitPoint.position of diameter .2f and checks if it collides with any object
+		//on Player layer (whatIsPlayer)
+		if (Physics2D.OverlapCircle(hitPoint.position, overlapDiameter, whatIsPlayer))
+        {
+			PlayerHealthController.instance.DamagePlayer();
+        }
 
 	}
 
 	public void EnragedAttack()
 	{
-		Vector3 pos = transform.position;
-		pos += transform.right * attackOffset.x;
-		pos += transform.up * attackOffset.y;
+		//does an overlap and checks if any other object collides with the circle
+		//creates a circle at hitPoint.position of diameter .2f and checks if it collides with any object
+		//on Player layer (whatIsPlayer)
+		if (Physics2D.OverlapCircle(hitPoint.position, overlapDiameter, whatIsPlayer))
+		{
+			PlayerHealthController.instance.DamagePlayer();
+		}
 
-	}
-
-	void OnDrawGizmosSelected()
-	{
-		Vector3 pos = transform.position;
-		pos += transform.right * attackOffset.x;
-		pos += transform.up * attackOffset.y;
-
-		Gizmos.DrawWireSphere(pos, attackRange);
 	}
 
 	

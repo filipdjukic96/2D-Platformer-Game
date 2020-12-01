@@ -119,7 +119,18 @@ public class PlayerBullet : MonoBehaviour
 
     private void HitKnightBoss(Collider2D other)
     {
-        //TODO
+        Debug.Log("Hit Knight Boss");
+
+        if (other.transform.gameObject.TryGetComponent<BossKnightController>(out var bossController))
+        {
+            Debug.Log("Hit Knight Boss with bullet");
+            bossController.TakeHit();
+        }
+        else
+        {
+            //unknown enemy type
+            Debug.Log("Knight Boss has no hit box controller!");
+        }
 
 
         //destroy the bullet

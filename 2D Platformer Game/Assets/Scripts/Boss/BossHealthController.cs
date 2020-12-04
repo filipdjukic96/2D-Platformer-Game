@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossHealthController : MonoBehaviour
 {
@@ -12,10 +13,20 @@ public class BossHealthController : MonoBehaviour
 
     public GameObject winPlatform; //platform to be shown after the boss is defeated
 
+    public Slider healthBar;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        //activate the health bar UI
+        healthBar.gameObject.SetActive(true);
+
+        //set health bar's max value to boss' max health
+        healthBar.maxValue = health;
+
+        //set current health bar's value to boss' starting health
+        healthBar.value = health;
         
     }
 
@@ -28,6 +39,9 @@ public class BossHealthController : MonoBehaviour
     public void TakeHit()
     {
         health--;
+
+        //update UI
+        healthBar.value = health;
 
         if(health <= 0)
         {
@@ -45,6 +59,9 @@ public class BossHealthController : MonoBehaviour
     {
         //deactivate the boss
         gameObject.SetActive(false);
+
+        //deactivate the health bar UI
+        healthBar.gameObject.SetActive(false);
 
         //instantiate an explosion
         Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);

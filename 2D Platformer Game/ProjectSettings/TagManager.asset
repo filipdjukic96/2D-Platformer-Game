@@ -9,6 +9,8 @@ TagManager:
   - Platform
   - TankBoss
   - KnightBoss
+  - Boss
+  - MonsterBoss
   layers:
   - Default
   - TransparentFX

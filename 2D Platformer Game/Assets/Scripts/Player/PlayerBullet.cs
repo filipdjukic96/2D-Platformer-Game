@@ -49,6 +49,9 @@ public class PlayerBullet : MonoBehaviour
             case "KnightBoss":
                 HitKnightBoss(other);
                 break;
+            case "MonsterBoss":
+                HitMonsterBoss(other);
+                break;
             default:
                 HitOther(other);
                 break;
@@ -130,6 +133,26 @@ public class PlayerBullet : MonoBehaviour
         {
             //unknown enemy type
             Debug.Log("Knight Boss has no hit box controller!");
+        }
+
+
+        //destroy the bullet
+        DestroyBullet();
+    }
+
+    private void HitMonsterBoss(Collider2D other)
+    {
+        Debug.Log("Hit Monster Boss");
+
+        if (other.transform.gameObject.TryGetComponent<BossMonsterController>(out var bossController))
+        {
+            Debug.Log("Hit Monster Boss with bullet");
+            bossController.TakeHit();
+        }
+        else
+        {
+            //unknown enemy type
+            Debug.Log("Monster Boss has no hit box controller!");
         }
 
 

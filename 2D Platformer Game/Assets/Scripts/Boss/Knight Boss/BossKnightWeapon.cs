@@ -30,7 +30,10 @@ public class BossKnightWeapon : MonoBehaviour
 		if (Physics2D.OverlapCircle(hitPoint.position, overlapDiameter, whatIsPlayer))
         {
 			PlayerHealthController.instance.DamagePlayer();
-        }
+
+			//play boss hit audio
+			AudioManager.instance.PlaySFX(AudioManager.SoundEffects.BossImpact);
+		}
 
 	}
 
@@ -42,6 +45,9 @@ public class BossKnightWeapon : MonoBehaviour
 		if (Physics2D.OverlapCircle(hitPoint.position, overlapDiameter, whatIsPlayer))
 		{
 			PlayerHealthController.instance.DamagePlayer();
+
+			//play boss hit audio
+			AudioManager.instance.PlaySFX(AudioManager.SoundEffects.BossImpact);
 		}
 
 	}

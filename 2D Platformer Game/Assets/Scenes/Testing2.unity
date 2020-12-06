@@ -20401,6 +20401,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 186.13
       objectReference: {fileID: 0}
+    - target: {fileID: 9167125016899546823, guid: 88553888f3874894e937e20169cb3b56,
+        type: 3}
+      propertyPath: nextLevelToLoad
+      value: Victory_Screen
+      objectReference: {fileID: 0}
     - target: {fileID: 9167125017336851262, guid: 88553888f3874894e937e20169cb3b56,
         type: 3}
       propertyPath: m_LocalPosition.z

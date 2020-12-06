@@ -79,6 +79,7 @@ MonoBehaviour:
   explosion: {fileID: 7740587661246690353, guid: 5d2f000abff604a4bba615d61d1576a5,
     type: 3}
   winPlatform: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &8613901516826338337
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8613901518435563277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.35, y: -0.46, z: 0}
+  m_LocalPosition: {x: -1.79, y: -0.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8613901518137809392}

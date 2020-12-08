@@ -43,7 +43,7 @@ public class BossMonsterController : MonoBehaviour
 
         var currentHealth = bossHealthController.CurrentHealth();
 
-        if (currentHealth <= 4)
+        if (currentHealth <= 2)
         {
             animator.SetTrigger("stageTwo");
         }

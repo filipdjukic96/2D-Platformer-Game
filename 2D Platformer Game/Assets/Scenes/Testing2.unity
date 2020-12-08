@@ -18142,48 +18142,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1504681014}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1504681016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1504681015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7522966bf0637d149a562e9d5b8b148f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 8
-  explosion: {fileID: 7740587661246690353, guid: 5d2f000abff604a4bba615d61d1576a5,
-    type: 3}
-  winPlatform: {fileID: 1898129018}
-  healthBar: {fileID: 9167125017826833259}
---- !u!114 &1504681017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1504681015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4570cad48db6f72449e624404cc29510, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDead: 0
---- !u!114 &1504681018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1504681015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e5759b60da39b6489c6f3af6fa28396, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1644608478
 PrefabInstance:
   m_ObjectHideFlags: 0

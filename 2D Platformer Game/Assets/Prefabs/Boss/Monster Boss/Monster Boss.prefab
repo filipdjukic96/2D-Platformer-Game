@@ -338,11 +338,13 @@ GameObject:
   m_Component:
   - component: {fileID: 374423636540712766}
   - component: {fileID: 374423636540712765}
-  - component: {fileID: 374423636540712764}
   - component: {fileID: 374423636540712755}
   - component: {fileID: 374423636540712754}
+  - component: {fileID: 8856772963760850419}
+  - component: {fileID: 1686401382613113830}
+  - component: {fileID: 7359642028757571110}
   m_Layer: 0
-  m_Name: Boss
+  m_Name: Monster Boss
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,23 +386,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &374423636540712764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374423636540712767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c7ca7dee03aee6409806d7f871945b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 50
-  damage: 5
-  camAnim: {fileID: 0}
-  healthBar: {fileID: 0}
-  isDead: 0
 --- !u!58 &374423636540712755
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -438,6 +423,47 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8856772963760850419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374423636540712767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4570cad48db6f72449e624404cc29510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
+--- !u!114 &1686401382613113830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374423636540712767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5759b60da39b6489c6f3af6fa28396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7359642028757571110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374423636540712767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7522966bf0637d149a562e9d5b8b148f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  explosion: {fileID: 0}
+  winPlatform: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &374423636553062235
 GameObject:
   m_ObjectHideFlags: 0

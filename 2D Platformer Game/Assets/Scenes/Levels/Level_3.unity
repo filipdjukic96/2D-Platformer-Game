@@ -1070,6 +1070,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4349112893767369487, guid: 5c7b521c268c8ef47b7caebe4d88214b,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c7b521c268c8ef47b7caebe4d88214b, type: 3}
 --- !u!1001 &286765578
@@ -1910,7 +1915,7 @@ PrefabInstance:
     - target: {fileID: 4349112893767369487, guid: 5c7b521c268c8ef47b7caebe4d88214b,
         type: 3}
       propertyPath: moveSpeed
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c7b521c268c8ef47b7caebe4d88214b, type: 3}
@@ -114431,6 +114436,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gem (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5969740275210077974, guid: 833547fee573a494885d19c52635c1e0,
+        type: 3}
+      propertyPath: gemScoreWorth
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 833547fee573a494885d19c52635c1e0, type: 3}
 --- !u!1 &1231483732
@@ -116886,6 +116896,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9167125016899546823, guid: 88553888f3874894e937e20169cb3b56,
+        type: 3}
+      propertyPath: nextLevelToLoad
+      value: Victory_Screen
       objectReference: {fileID: 0}
     - target: {fileID: 9167125017336851262, guid: 88553888f3874894e937e20169cb3b56,
         type: 3}

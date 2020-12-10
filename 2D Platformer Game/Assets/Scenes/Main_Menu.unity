@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ddb4379debf464a8f2af924295485b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScene: Level1_test
+  startScene: Level Select
   continueScene: Level Select
   continueButton: {fileID: 241039031}
 --- !u!1 &538440524
@@ -1226,6 +1226,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: New Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010484968274322669, guid: f903d2953b48b584a9c08ad2855a728e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010484968274322669, guid: f903d2953b48b584a9c08ad2855a728e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010484968274322669, guid: f903d2953b48b584a9c08ad2855a728e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2010484969355092233, guid: f903d2953b48b584a9c08ad2855a728e,
         type: 3}

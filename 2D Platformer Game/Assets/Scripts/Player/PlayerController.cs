@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
                 //if the Player wants to shoot
                 //if the left mouse button is clicked
                 //and if the game ins't paused
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetButtonDown("Fire1"))
                 {
                     ShootBullet();
                 }

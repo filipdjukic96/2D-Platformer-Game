@@ -48096,12 +48096,12 @@ PrefabInstance:
     - target: {fileID: 7854475496087044448, guid: 88553888f3874894e937e20169cb3b56,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.87
+      value: -9.49
       objectReference: {fileID: 0}
     - target: {fileID: 7854475496087044448, guid: 88553888f3874894e937e20169cb3b56,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -106.75
+      value: -103.95
       objectReference: {fileID: 0}
     - target: {fileID: 9167125016575605789, guid: 88553888f3874894e937e20169cb3b56,
         type: 3}
@@ -49285,12 +49285,17 @@ PrefabInstance:
     - target: {fileID: 8613901516824345855, guid: cde3fdcd2b7d5eb47928edd5e4924fac,
         type: 3}
       propertyPath: timeBetweenMines
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8613901516824345855, guid: cde3fdcd2b7d5eb47928edd5e4924fac,
         type: 3}
       propertyPath: timeBetweenBulletShots
-      value: 2.5
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8613901516824345855, guid: cde3fdcd2b7d5eb47928edd5e4924fac,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8613901516826338338, guid: cde3fdcd2b7d5eb47928edd5e4924fac,
         type: 3}
